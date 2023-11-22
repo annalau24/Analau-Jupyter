@@ -1,0 +1,26 @@
+import pickle
+
+class MiObjeto:
+    def __init__(self, atributo1, atributo2):
+        self.atributo1 = atributo1
+        self.atributo2 = atributo2
+
+def serializar_objeto(objeto, nombre_archivo):
+    with open(nombre_archivo, 'wb') as archivo:
+        pickle.dump(objeto, archivo)
+    print(f"Objeto serializado y almacenado en {nombre_archivo}")
+
+def deserializar_objeto(nombre_archivo):
+    with open(nombre_archivo, 'rb') as archivo:
+        objeto_recuperado = pickle.load(archivo)
+    print(f"Objeto recuperado desde {nombre_archivo}")
+    return objeto_recuperado
+
+objeto_original = MiObjeto(atributo1="Hola", atributo2=42)
+
+serializar_objeto(objeto_original, 'objeto_serializado.pkl')
+
+objeto_recuperado = deserializar_objeto('objeto_serializado.pkl')
+
+print(f"Atributo 1: {objeto_recuperado.atributo1}")
+print(f"Atributo 2: {objeto_recuperado.atributo2}")
